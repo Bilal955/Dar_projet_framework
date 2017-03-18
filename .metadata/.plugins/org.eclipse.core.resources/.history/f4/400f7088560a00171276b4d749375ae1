@@ -1,0 +1,16 @@
+[
+	{
+		"login":"dupond",
+		"mdp":"true"
+	},
+	
+	{
+		"login":"gerard",
+		"mdp":"false"
+	},
+	
+	{
+		"login":"toto",
+		"mdp":"true"
+	}
+]

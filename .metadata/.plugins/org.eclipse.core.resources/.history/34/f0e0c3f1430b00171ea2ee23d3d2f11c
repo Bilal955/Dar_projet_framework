@@ -1,0 +1,169 @@
+package controller;
+
+import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import model.Presence;
+import model.UserAccount;
+import model.mytools.MyTools;
+import requetes.RequestToFunc;
+import response.Response;
+import session.Etat;
+import template.TemplateTools;
+import tools.Tools;
+import types.MimeType;
+
+public class PresenceController {
+
+	public Response isConnected(RequestToFunc r, Response resp, Etat etat) {
+		if(etat.getPropriete("connected") != null && etat.getPropriete("connected").equals("true")){
+			resp.setBody("true");
+			resp.putContentType("text/plain");
+		}
+		else{
+			resp.setBody("false");
+			resp.putContentType("text/plain");
+		}
+		System.out.println("CO : " + resp.toString());
+		return resp;
+	}
+
+	private void setConnected(Etat etat) {
+		etat.putPropriete("connected", "true");
+	}
+
+	private void setDisconnected(Etat etat) {
+		etat.putPropriete("connected", "false");
+	}
+
+	public Response logout(RequestToFunc r, Response resp, Etat etat) {
+		setDisconnected(etat);
+		try {
+			resp.setBody(Tools.fileToString("Ressources/home.html"));
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+		return resp;
+	}
+
+	public Response login(RequestToFunc r, Response resp, Etat etat) {
+
+		String login = r.getQuery("login");
+		String pwd = r.getQuery("pwd");
+		etat.putPropriete("login", login);
+		resp.putCookie("login", login);
+		try {
+			etat.putPropriete("mail", MyTools.getMail(login));
+		} catch (FileNotFoundException e1) {
+			e1.printStackTrace();
+		}
+
+		String realPass = "";
+		try {
+			realPass = MyTools.getPassword(login);
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+		if(realPass.equals(pwd)) {
+			setConnected(etat);
+			resp.setBody("true");
+			resp.putContentType("text/plain");
+			return resp;
+		}
+		else{
+			resp.setBody("false");
+			resp.putContentType("text/plain");
+			return resp;
+		}
+	}
+
+	public Response getAllPresenceJSON(RequestToFunc r, Response resp, Etat etat) {
+		resp.putContentType(MimeType.APPLICATION_JSON.getName());
+		try {
+			resp.setBody(MyTools.getPresenceJSON());
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+		return resp;
+	}
+
+	public Response getJS(RequestToFunc r, Response resp, Etat etat) {
+		String file = r.getPathRessource().get(1);
+		try {
+
+			resp.setBody(Tools.fileToString("Ressources/js/"+file));
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+		return resp;
+	}
+
+	public Response getHTML(RequestToFunc r, Response resp, Etat etat) {
+		String file = r.getPathRessource().get(0);
+		try {
+
+			resp.setBody(Tools.fileToString("Ressources/"+file));
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+		return resp;
+	}
+	
+	public Response getMain(RequestToFunc r, Response resp, Etat etat) {
+		if(isConnected(r, resp, etat))
+			resp.setBody(Tools.fileToString("Ressources/main.html"));
+		try {
+			resp.setBody(Tools.fileToString("Ressources/main.html"));
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+		return resp;
+	}
+
+	public Response fillPresence(RequestToFunc r, Response resp, Etat etat) {
+		List<Presence> liste = new ArrayList<>();
+		try {
+			liste = MyTools.getPresence();
+		} catch (FileNotFoundException e1) {
+			e1.printStackTrace();
+		}
+		String s = "";
+		for(Presence p : liste){
+			s += p.getNom()+":";
+			s += p.getIsPresent()+"/";
+		}
+		resp.setBody(s);
+		resp.putContentType("text/plain");
+		return resp;
+	}
+
+	public Response saveAccount(RequestToFunc r, Response resp, Etat etat){
+		String mail = r.getQuery("mail").trim();
+		String login = r.getQuery("login").trim();
+		String pwd = r.getQuery("pwd").trim();
+		etat.putPropriete("login", login);
+		etat.putPropriete("mail", mail);
+		UserAccount u = new UserAccount(mail, login, pwd);
+		MyTools.saveUser(u);
+		resp.setBody("true");
+		resp.putContentType("text/plain");
+		return resp;
+	}
+
+	public Response displayProfile(RequestToFunc r, Response resp, Etat etat){
+		System.out.println("LOGGGG : "+r.getCookies("mail"));
+		Map<String, String> map = new HashMap<>();
+		map.put("login", r.getCookies("login"));
+		map.put("mail", r.getCookies("mail"));
+		try {
+			resp.setBody(TemplateTools.executeTemplateFile("Ressources/profile.html", map));
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+		return resp;
+	}
+
+}

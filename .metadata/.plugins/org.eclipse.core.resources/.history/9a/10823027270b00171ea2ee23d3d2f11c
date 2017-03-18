@@ -1,0 +1,90 @@
+[
+
+{
+		"ressource":"/home.html",
+		"methode":"GET",
+		"arguments": [],
+		"fonction": "home",
+		"classFonction": "PresenceController"
+	},
+	
+	{
+		"ressource":"/signin.html",
+		"methode":"GET",
+		"arguments": [],
+		"fonction": "signin",
+		"classFonction": "PresenceController"
+	},
+	
+	{
+		"ressource":"/signup.html",
+		"methode":"GET",
+		"arguments": [],
+		"fonction": "signup",
+		"classFonction": "PresenceController"
+	},
+
+{
+		"ressource":"/login",
+		"methode":"GET",
+		"arguments": ["login", "pwd"],
+		"fonction": "login",
+		"classFonction": "PresenceController"
+	},
+	
+	{
+		"ressource":"/js/.*.js",
+		"methode":"GET",
+		"arguments": [],
+		"fonction": "getJS",
+		"classFonction": "PresenceController"
+	},
+	
+	{
+		"ressource":"/.*.html",
+		"methode":"GET",
+		"arguments": [],
+		"fonction": "getHTML",
+		"classFonction": "PresenceController"
+	},
+	
+	{
+		"ressource":"/isconnected",
+		"methode":"GET",
+		"arguments": [],
+		"fonction": "isConnected",
+		"classFonction": "PresenceController"
+	},
+	
+	{
+		"ressource":"/fillpresence",
+		"methode":"GET",
+		"arguments": [],
+		"fonction": "fillPresence",
+		"classFonction": "PresenceController"
+	},
+	
+	{
+		"ressource":"/saveaccount",
+		"methode":"GET",
+		"arguments": ["mail", "login", "pwd"],
+		"fonction": "saveAccount",
+		"classFonction": "PresenceController"
+	},
+
+	{
+		"ressource":"/profile",
+		"methode":"GET",
+		"arguments": [],
+		"fonction": "displayProfil",
+		"classFonction": "PresenceController"
+	},
+
+	{
+		"ressource":"/seenpresence",
+		"methode":"GET",
+		"arguments": [],
+		"fonction": "getAllPresenceJSON",
+		"classFonction": "PresenceController"
+	}
+]

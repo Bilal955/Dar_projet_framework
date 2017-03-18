@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>MainPage</title>
+	<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+	<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
+	<script type="text/javascript" src="js/tools.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+</head>
+
+<style>
+	#main {
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		text-align: center;
+		opacity: 1;
+		background-color: rgb(255, 209, 148);
+		background-image: linear-gradient(to left, rgb(112, 225, 245),
+			rgb(255, 209, 148));
+	}
+
+	.title {
+		margin-top: 10px;
+		margin-left: 150px;
+		background: linear-gradient(to left, rgb(112, 225, 245), rgb(255, 209, 148) 100%);
+		font-size: 50px;
+		font-family: "Brush Script MT", cursive;
+	}
+
+	#btnLogout {
+		margin-top: 10px;
+		margin-right: 40px;
+		font-size: 30px;
+		float: right;
+		color: #a31536;
+	}
+
+	#btnProfile {
+		margin-top: 10px;
+		margin-right: 70px;
+		font-size: 30px;
+		float: right;
+		color: #12527c;
+	}
+
+	.btn-block {
+		font-size: 30px;
+	}
+
+	#liste {
+		padding-top: 30px;
+	}
+
+</style>
+
+<body onload='isConnected("false"); fillPresence()''>
+	<div id="main">
+		<div class="row">
+			<div class="title">Presence Sheet
+				<a href="logout"><span class="glyphicon glyphicon-log-out" aria-hidden="true" id="btnLogout"></span></a>
+				<a href="profile"><span class="glyphicon glyphicon-user" aria-hidden="true" id="btnProfile"></span></a>
+			</div>
+		</div>
+		
+		<div id="liste" class="container">
+		</div>
+		
+	</div>
+</body>
+</html>

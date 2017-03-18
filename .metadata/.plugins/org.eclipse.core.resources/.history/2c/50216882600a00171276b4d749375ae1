@@ -1,0 +1,26 @@
+[
+	{
+		"ressource":"/home.html",
+		"methode":"GET",
+		"arguments": [],
+		"fonction": "home",
+		"classFonction": "AppSignInUp"
+	},
+	
+	{
+		"ressource":"/home.html",
+		"methode":"POST",
+		"arguments": [],
+		"fonction": "saveInfo",
+		"classFonction": "AppSignInUp"
+	},
+	
+	{
+		"ressource":"/deleteinf",
+		"methode":"POST",
+		"arguments": [],
+		"fonction": "delete",
+		"classFonction": "AppSignInUp"
+	}
+	
+]

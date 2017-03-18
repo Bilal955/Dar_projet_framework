@@ -1,0 +1,51 @@
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Account informations</title>
+
+	<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+	<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+
+</head>
+
+<style>
+	@import url("http://fonts.googleapis.com/css?family=Open+Sans:400,300,700|Montserrat:400,700");
+	.index a{
+		font-size: 2em;
+	}
+
+	.signin {
+		height: 100vh;
+		text-align: center;
+		display: flex;
+		align-items: center;
+		justify-content: space-around;
+		font-family: "Brush Script MT", cursive;
+		background: linear-gradient(to left, rgb(112, 225, 245), rgb(255, 209, 148) 100%);
+		font-size: 20px;
+	}
+	
+</style>
+
+<body>
+
+	<div class="signin">
+		<div class="signin-content">
+			<div class="index">
+				<a href="home.html" class="title">My Infos</a>
+			</div>
+			<p />
+
+			<div class="row">
+				<div id="infos">
+					<pre> Your login : ${login}</pre><pre> Your mail : ${mail}</pre>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

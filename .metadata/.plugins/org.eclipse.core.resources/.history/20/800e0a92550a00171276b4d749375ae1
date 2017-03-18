@@ -1,0 +1,51 @@
+package model.mytools;
+
+import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.json.JSONArray;
+import org.json.JSONTokener;
+
+import model.Presence;
+import tools.Tools;
+
+public class MyTools {
+	
+	public static String getPresenceJSON() throws FileNotFoundException {
+		return Tools.fileToString("Ressources/data/data.json");
+	}
+	
+	public static List<Presence> getPresence() throws FileNotFoundException {
+		JSONTokener tokener = new JSONTokener(Tools.fileToString("Ressources/data/data.json"));
+		List<Presence> liste = new ArrayList<>();
+		JSONArray array = new JSONArray(tokener);
+		for(int i = 0; i < array.length(); i++){
+			liste.add(new Presence(array.getJSONObject(i).getString("name"), new Boolean(array.getJSONObject(i).getString("presence"))));
+		}
+		return liste;
+	}
+
+	public static void savePresence(Presence p) throws FileNotFoundException {
+		List<Presence> liste = getPresence();
+		boolean found = false;
+		String s = "[";
+		for(Presence presence : liste){
+			if(presence.getNom().equals(p.getNom())){
+				liste.remove(presence);
+				liste.add(0, presence);
+				found = true;
+				s+="{\"name\":" + p.getNom() + ",\"presence\":" + p.getIsPresent() + "},";
+			}
+			else
+				s+="{\"name\":" + presence.getNom() + ",\"presence\":" + presence.getIsPresent() + "},";
+		}
+		
+		if(!found)
+			s+="{\"name\":" + p.getNom() + ",\"presence\":" + p.getIsPresent() + "},";
+		
+		s = s.substring(0, s.length()-1);
+		s+="]";
+		Tools.overrideFile("Ressources/data/data.json", s);
+	}	
+}

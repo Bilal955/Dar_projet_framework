@@ -1,0 +1,23 @@
+[
+	{
+		"mail":"dupond@gmail.com",
+		"login":"dupond",
+		"mdp":"dupond1"
+	},
+	
+	{
+		"mail":"gerard@gmail.com",
+		"login":"gerard",
+		"mdp":"gerard1"
+	},
+	
+	{
+		"mail":"toto@hotmail.fr",
+		"login":"toto",
+		"mdp":"toto1"
+	}
+,
+{"mail":"zjencezj@ncj.com","login":"jndzjndzj","pwd":"azerty"}
+,
+{"mail":"hbhezb@lkdzncjk.om","login":"bdnzjnj","pwd":"azertu"}
+]

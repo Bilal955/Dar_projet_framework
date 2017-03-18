@@ -1,0 +1,145 @@
+package controller;
+
+import java.io.FileNotFoundException;
+import java.util.HashMap;
+import java.util.Map;
+
+import org.omg.CORBA.portable.ResponseHandler;
+
+import model.Presence;
+import model.mytools.MyTools;
+import requetes.RequestToFunc;
+import response.Response;
+import session.Etat;
+import template.TemplateTools;
+import tools.Tools;
+import types.HeaderResponse;
+import types.MimeType;
+
+public class PresenceController {
+
+	public boolean isConnected(Etat etat) {
+		return etat.getPropriete("connected") != null && etat.getPropriete("connected").equals("true");
+	}
+
+	private void setConnected(Etat etat) {
+		etat.putPropriete("connected", "true");
+	}
+
+
+
+	public Response login(RequestToFunc r, Response resp, Etat etat) {
+		if(isConnected(etat)) {
+			resp.setBody("true");
+			resp.putContentType("text/plain");
+			return resp;
+		}
+	
+		
+		String login = r.getQuery("login");
+		String pwd = r.getQuery("pwd");
+
+		String realPass = "";
+		try {
+			realPass = MyTools.getPassword(login);
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+		if(realPass.equals(pwd)) {
+			setConnected(etat);
+			resp.setBody("true");
+			resp.putContentType("text/plain");
+			return resp;
+		}
+		else{
+			resp.setBody("false");
+			resp.putContentType("text/plain");
+			return resp;
+		}
+		
+	}
+
+
+
+	public Response getAllPresenceJSON(RequestToFunc r, Response resp, Etat etat) {
+		resp.putContentType(MimeType.APPLICATION_JSON.getName());
+		try {
+			resp.setBody(MyTools.getPresenceJSON());
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+		return resp;
+	}
+	
+	public Response home(RequestToFunc r, Response resp, Etat etat) {
+		// Recupere les args (bon, en vrai il faut tester qu'ils sont bien la et agir en consequence...
+		try {
+			resp.setBody(Tools.fileToString("Ressources/home.html"));
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+		return resp;
+	}
+	
+	public Response signin(RequestToFunc r, Response resp, Etat etat) {
+		// Recupere les args (bon, en vrai il faut tester qu'ils sont bien la et agir en consequence...
+		try {
+			resp.setBody(Tools.fileToString("Ressources/signin.html"));
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+		return resp;
+	}
+	
+	public Response signup(RequestToFunc r, Response resp, Etat etat) {
+		// Recupere les args (bon, en vrai il faut tester qu'ils sont bien la et agir en consequence...
+		try {
+			resp.setBody(Tools.fileToString("Ressources/signup.html"));
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+		return resp;
+	}
+	
+	public Response getJS(RequestToFunc r, Response resp, Etat etat) {
+		String file = r.getPathRessource().get(1);
+		try {
+						
+			resp.setBody(Tools.fileToString("Ressources/js/"+file));
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+		return resp;
+	}
+	
+	public Response getHTML(RequestToFunc r, Response resp, Etat etat) {
+		// Recupere les args (bon, en vrai il faut tester qu'ils sont bien la et agir en consequence...
+		String file = r.getPathRessource().get(1);
+		try {
+						
+			resp.setBody(Tools.fileToString("Ressources/js/"+file));
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+		return resp;
+	}
+
+	public Response autre(RequestToFunc r, Response resp, Etat etat) {
+		// Recupere les args (bon, en vrai il faut tester qu'ils sont bien la et agir en consequence...
+		String nom = r.getPost("nom").trim();
+		String isPresent = r.getPost("isPresent").trim();
+		// Traiter l'enregistrement
+		Presence u = new Presence(nom, Boolean.valueOf(isPresent));
+		etat.setData(u);
+		etat.putPropriete("profilCompleted", "true");
+		Map<String, String> map = new HashMap<>();
+		map.put("nom", nom);
+		map.put("isPresent", isPresent);
+		try {
+			resp.setBody(TemplateTools.executeTemplateFile("Ressources/main.html", map));
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+		return resp;
+	}
+}

@@ -1,0 +1,42 @@
+[
+
+{
+		"ressource":"/home.html",
+		"methode":"GET",
+		"arguments": [],
+		"fonction": "home",
+		"classFonction": "PresenceController"
+	},
+	
+	{
+		"ressource":"/signin.html",
+		"methode":"GET",
+		"arguments": [],
+		"fonction": "signin",
+		"classFonction": "PresenceController"
+	},
+	
+	{
+		"ressource":"/signout.html",
+		"methode":"GET",
+		"arguments": [],
+		"fonction": "signout",
+		"classFonction": "PresenceController"
+	},
+
+{
+		"ressource":"/login.html",
+		"methode":"GET",
+		"arguments": ["login", "pwd"],
+		"fonction": "login",
+		"classFonction": "PresenceController"
+	},
+	
+	{
+		"ressource":"/seenpresence",
+		"methode":"GET",
+		"arguments": [],
+		"fonction": "getAllPresenceJSON",
+		"classFonction": "PresenceController"
+	}
+]

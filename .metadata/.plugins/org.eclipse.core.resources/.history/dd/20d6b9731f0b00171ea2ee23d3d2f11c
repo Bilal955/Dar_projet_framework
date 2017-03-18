@@ -1,0 +1,17 @@
+[
+	{
+		"mail":"dupond@gmail.com",
+		"login":"dupond",
+		"mdp":"dupond1"
+	},
+	
+	{
+		"login":"gerard",
+		"mdp":"gerard1"
+	},
+	
+	{
+		"login":"toto",
+		"mdp":"toto1"
+	}
+]

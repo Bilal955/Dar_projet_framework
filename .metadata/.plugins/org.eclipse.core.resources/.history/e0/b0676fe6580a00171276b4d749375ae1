@@ -1,0 +1,17 @@
+[
+{
+		"ressource":"/login.html",
+		"methode":"GET",
+		"arguments": ["login", "pwd"],
+		"fonction": "login",
+		"classFonction": "PresenceController"
+	},
+	
+	{
+		"ressource":"/seenpresence",
+		"methode":"GET",
+		"arguments": [],
+		"fonction": "getAllPresenceJSON",
+		"classFonction": "PresenceController"
+	}
+]

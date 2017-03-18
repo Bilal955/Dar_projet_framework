@@ -1,0 +1,16 @@
+[
+	{
+		"name":"dupond",
+		"presence":"true"
+	},
+	
+	{
+		"name":"gerard",
+		"presence":"false"
+	},
+	
+	{
+		"name":"toto",
+		"presence":"true"
+	}
+]

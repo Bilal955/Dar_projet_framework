@@ -1,0 +1,74 @@
+[
+	
+{
+		"ressource":"/login",
+		"methode":"GET",
+		"arguments": ["login", "pwd"],
+		"fonction": "login",
+		"classFonction": "PresenceController"
+	},
+	
+	{
+		"ressource":"/logout",
+		"methode":"GET",
+		"arguments": [],
+		"fonction": "login",
+		"classFonction": "PresenceController"
+	},
+	
+	{
+		"ressource":"/js/.*.js",
+		"methode":"GET",
+		"arguments": [],
+		"fonction": "getJS",
+		"classFonction": "PresenceController"
+	},
+	
+	{
+		"ressource":"/.*.html",
+		"methode":"GET",
+		"arguments": [],
+		"fonction": "getHTML",
+		"classFonction": "PresenceController"
+	},
+	
+	{
+		"ressource":"/isconnected",
+		"methode":"GET",
+		"arguments": [],
+		"fonction": "isConnected",
+		"classFonction": "PresenceController"
+	},
+	
+	{
+		"ressource":"/fillpresence",
+		"methode":"GET",
+		"arguments": [],
+		"fonction": "fillPresence",
+		"classFonction": "PresenceController"
+	},
+	
+	{
+		"ressource":"/saveaccount",
+		"methode":"GET",
+		"arguments": ["mail", "login", "pwd"],
+		"fonction": "saveAccount",
+		"classFonction": "PresenceController"
+	},
+
+	{
+		"ressource":"/profile",
+		"methode":"GET",
+		"arguments": [],
+		"fonction": "displayProfile",
+		"classFonction": "PresenceController"
+	},
+
+	{
+		"ressource":"/seenpresence",
+		"methode":"GET",
+		"arguments": [],
+		"fonction": "getAllPresenceJSON",
+		"classFonction": "PresenceController"
+	}
+]

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Login</title>
+	<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+	<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
+
+	<!-- Including Bootstrap JS (with its jQuery dependency) so that dynamic components work -->
+	<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+	<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="js/tools.js"></script>
+	<script type="text/javascript" src="js/signin.js"></script>
+
+</head>
+
+<style>
+	.signin {
+		height: 100vh;
+		text-align: center;
+		display: flex;
+		align-items: center;
+		justify-content: space-around;
+	}
+
+	.signin .btn-normal {
+		color: #6AD58B;
+		border: 1px solid #6AD58B;
+		padding: 6px 15px;
+		border-radius: 20px;
+		background: #ffffff;
+	}
+
+	.signin a {
+		text-decoration: none;
+	}
+
+	.signin .logo a {
+		font-size: 3em;
+	}
+
+	.signin p {
+		font-size: 25px;
+		font-weight: lighter;
+	}
+
+	.signin .forgot-pass {
+		margin-top: 20px;
+	}
+
+	.signin .signin-div {
+		font-size: 1.2em;
+		margin-top: 5px;
+	}
+
+	.signin .email-holder, .signin .password-holder {
+		min-width: 200px;
+		padding: 6px;
+		padding-left: 10px;
+		border: 1px solid #6AD58B;
+		border-radius: 5px;
+		margin-bottom: 10px;
+	}
+
+	.signin #error_holder {
+		color: red;
+		margin-bottom: 10px;
+	}
+
+	/* --- Fonts --- */
+	body {
+		font-family: "Open Sans", "Helvetica", "sans-serif";
+		/* padding-bottom: 200px; */
+	}
+	h1, h2, h3 {
+		font-family: "Montserrat", "sans-serif";
+	}
+</style>
+
+<body onload='isConnected("true")'>
+	<div class="signin">
+		<div class="signin-content">
+			<div class="logo" id="logo">
+				<a>Presence Sheet</a>
+			</div>
+			<p>Welcome back!</p>
+
+			<div class="row">
+			
+				<div id="error_holder">
+					<!-- ERROR HOLDER -->
+				</div>
+				<div>
+					<input name="login" type="text" id="login" placeholder="yourlogin"
+					class="email-holder" />
+				</div>
+				<div>
+					<input name="pwd" type="password" id="pwd" placeholder="yourpassword"
+					class="password-holder" />
+				</div>
+				<div class="col-xs-10 col-xs-offset-3">
+					<button class="btn-normal" onclick="validate()">Sign in</button>
+				</div>
+			
+		</div>
+
+
+		<div class="signin-div">
+			<span>Don't have an account <a href="signup.html">Sign up</a>.
+			</span>
+		</div>
+	</div>
+	<div class="modal">
+		<!-- Place at bottom of page -->
+	</div>
+</div>
+
+</body>
+</html>
